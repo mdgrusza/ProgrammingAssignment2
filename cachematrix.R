@@ -6,8 +6,9 @@
 makeCacheMatrix <- function(x = matrix()) {
  dm <-dim(x)
  
- if(dm[1]==dm[2] && det(x)!=0){
-  s <- NULL
+ #checks if the matrix is inversible 
+ if(dm[1]==dm[2] && det(x)!=0){ #For example, if X is a square invertible matrix, then solve(X) returns its inverse.
+  s <- NULL  
   set <- function(y) {
     x <<- y
     s <<- NULL
@@ -19,13 +20,13 @@ makeCacheMatrix <- function(x = matrix()) {
        setsolve = setsolve,
        getsolve = getsolve)
  }
- else{ message("matrix is not invertible")}
+ else{ message("matrix is not invertible")} # returns an error
   
 }
 
 
 ## Write a short comment describing this function
-
+#This function computes the inverse of matrix
 cacheSolve <- function(x, ...) {
     
   s <- x$getsolve()
@@ -34,7 +35,7 @@ cacheSolve <- function(x, ...) {
     return(s)
   }
   data <- x$get()
-  s <- solve(data, ...)
+  s <- solve(data, ...) #
   x$setsolve(s)
   s
   
